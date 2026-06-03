@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CELUX — Accesorios Premium | Perú</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f4f1ed;--wa:#25D366;--wa-dark:#128C7E;--red:#ff3d2e;--gold:#ffb800;--gray:#141414;--gray2:#1e1e1e;--gray3:#2a2a2a;--muted:#666;--card:#111;--border:rgba(255,255,255,0.07);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* FLOAT BUTTONS */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:500;width:58px;height:58px;background:var(--wa);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 32px rgba(37,211,102,0.45);text-decoration:none;animation:waPulse 2.5s infinite;}
+@keyframes waPulse{0%,100%{box-shadow:0 8px 32px rgba(37,211,102,0.45);}50%{box-shadow:0 8px 48px rgba(37,211,102,0.7),0 0 0 10px rgba(37,211,102,0.1);}}
+.fab{position:fixed;right:20px;z-index:500;width:44px;height:44px;background:var(--gray2);border:1px solid var(--border);border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;color:white;}
+.fab:hover{background:var(--gray3);}
+.fab-config{top:80px;}
+.fab-admin{top:132px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(8,8,8,0.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.5px;}
+.logo em{font-style:normal;color:var(--wa);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;transition:color 0.2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-wa{display:flex;align-items:center;gap:8px;background:var(--wa);color:white;padding:10px 22px;border-radius:100px;text-decoration:none;font-size:14px;font-weight:600;transition:transform 0.2s;}
+.nav-wa:hover{transform:scale(1.03);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 40px 80px;position:relative;overflow:hidden;gap:40px;}
+.hero-glow{position:absolute;right:-200px;top:50%;transform:translateY(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(37,211,102,0.08),transparent 70%);border-radius:50%;pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.25);color:var(--wa);padding:7px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}
+.hero-badge::before{content:'';width:7px;height:7px;background:var(--wa);border-radius:50%;animation:blink 1.2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(40px,5.5vw,78px);font-weight:800;line-height:0.95;letter-spacing:-2.5px;}
+.hero h1 .outline{color:transparent;-webkit-text-stroke:1.5px var(--wa);}
+.hero-desc{margin-top:20px;color:var(--muted);font-size:16px;line-height:1.7;max-width:420px;}
+.trust-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;}
+.trust-pill{display:flex;align-items:center;gap:6px;background:var(--gray2);border:1px solid var(--border);padding:7px 14px;border-radius:100px;font-size:12px;font-weight:500;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:white;padding:15px 30px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 8px 24px rgba(37,211,102,0.3);}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(37,211,102,0.45);}
+.btn-ghost{background:transparent;color:var(--white);padding:15px 30px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.3);}
+.hero-right{display:flex;align-items:center;justify-content:center;}
+.stack{position:relative;width:320px;height:360px;}
+.scard{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.scard:nth-child(1){width:260px;left:20px;top:0;transform:rotate(-5deg);animation:fl1 3s ease-in-out infinite;}
+.scard:nth-child(2){width:280px;left:15px;top:70px;transform:rotate(2deg);z-index:1;animation:fl2 3.5s ease-in-out infinite;}
+.scard:nth-child(3){width:300px;left:10px;top:150px;z-index:2;}
+@keyframes fl1{0%,100%{transform:rotate(-5deg) translateY(0)}50%{transform:rotate(-5deg) translateY(-8px)}}
+@keyframes fl2{0%,100%{transform:rotate(2deg) translateY(0)}50%{transform:rotate(2deg) translateY(-6px)}}
+.scard-emoji{font-size:40px;}
+.scard-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;}
+.scard-price{color:var(--wa);font-weight:800;font-size:17px;}
+.scard-old{color:var(--muted);font-size:12px;text-decoration:line-through;}
+.scard-hot{background:var(--red);color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;}
+
+/* MARQUEE */
+.mqwrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;overflow:hidden;}
+.mqinner{display:flex;gap:36px;animation:mq 20s linear infinite;white-space:nowrap;}
+.mqitem{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);flex-shrink:0;}
+.mqitem .dot{width:5px;height:5px;border-radius:50%;background:var(--wa);}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HOW */
+.how{padding:80px 40px;background:var(--gray);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.slabel{font-size:11px;color:var(--wa);letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;}
+.step{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px 22px;position:relative;}
+.step-num{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:rgba(37,211,102,0.1);line-height:1;margin-bottom:14px;}
+.step-icon{font-size:26px;margin-bottom:10px;}
+.step-t{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px;}
+.step-d{font-size:13px;color:var(--muted);line-height:1.6;}
+.step-arr{position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:18px;z-index:1;}
+.step:last-child .step-arr{display:none;}
+
+/* PRODUCTS */
+.products{padding:80px 40px;}
+.sec-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;flex-wrap:wrap;gap:16px;}
+.ftabs{display:flex;gap:8px;flex-wrap:wrap;}
+.ftab{padding:8px 18px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all 0.2s;}
+.ftab.active,.ftab:hover{background:var(--wa);border-color:var(--wa);color:white;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:transform 0.3s,border-color 0.3s;}
+.pcard:hover{transform:translateY(-4px);border-color:rgba(37,211,102,0.2);}
+.pimg{height:190px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;}
+.pbadge{position:absolute;top:12px;left:12px;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;}
+.pbadge.hot{background:var(--red);color:white;}
+.pbadge.new{background:var(--gold);color:#000;}
+.pbadge.top{background:rgba(255,255,255,0.1);color:var(--white);}
+.pdisc{position:absolute;top:12px;right:12px;background:var(--wa);color:white;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:800;}
+.pinfo{padding:16px 18px 18px;}
+.pcat{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+.pname{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;line-height:1.2;margin-bottom:8px;}
+.prating{display:flex;align-items:center;gap:5px;margin-bottom:12px;}
+.pstars{color:var(--gold);font-size:12px;}
+.prtxt{font-size:12px;color:var(--muted);}
+.pfoot{display:flex;align-items:center;justify-content:space-between;}
+.pprice{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;}
+.pold{font-size:12px;color:var(--muted);text-decoration:line-through;margin-top:2px;}
+.btn-ped{display:inline-flex;align-items:center;gap:6px;background:var(--wa);color:white;border:none;padding:10px 16px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:transform 0.2s;white-space:nowrap;}
+.btn-ped:hover{transform:scale(1.06);}
+
+/* BANNER */
+.banner{margin:0 40px 80px;background:linear-gradient(135deg,#0d3320,#051a0d);border:1px solid rgba(37,211,102,0.15);border-radius:26px;padding:48px 56px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;gap:28px;}
+.banner::before{content:'';position:absolute;right:-60px;top:-60px;width:320px;height:320px;background:radial-gradient(circle,rgba(37,211,102,0.08),transparent 70%);border-radius:50%;}
+.banner-c{position:relative;z-index:1;}
+.banner-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--wa);font-weight:700;margin-bottom:10px;}
+.banner-t{font-family:'Syne',sans-serif;font-size:clamp(26px,3.5vw,40px);font-weight:800;letter-spacing:-1px;line-height:1.05;margin-bottom:8px;}
+.banner-d{font-size:14px;color:rgba(255,255,255,0.65);margin-bottom:24px;}
+.banner-r{position:relative;z-index:1;font-size:90px;flex-shrink:0;animation:fl1 3s ease-in-out infinite;}
+
+/* BENEFITS */
+.benefits{padding:0 40px 80px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.ben{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px 22px;}
+.ben-i{font-size:30px;margin-bottom:12px;}
+.ben-t{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px;}
+.ben-d{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* REVIEWS */
+.reviews-s{padding:0 40px 80px;}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;}
+.rcard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;}
+.rstars{color:var(--gold);font-size:13px;margin-bottom:10px;}
+.rtext{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.7;margin-bottom:16px;font-style:italic;}
+.rauthor{display:flex;align-items:center;gap:10px;}
+.ravatar{width:38px;height:38px;border-radius:50%;background:var(--gray3);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.rname{font-weight:600;font-size:13px;}
+.rcity{font-size:11px;color:var(--muted);}
+
+/* WA CTA */
+.wa-cta{margin:0 40px 80px;background:var(--wa);border-radius:26px;padding:48px 56px;display:flex;align-items:center;justify-content:space-between;gap:28px;}
+.wacta-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;opacity:0.75;font-weight:700;margin-bottom:8px;}
+.wacta-t{font-family:'Syne',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-1px;line-height:1.05;margin-bottom:8px;}
+.wacta-d{font-size:14px;opacity:0.85;max-width:380px;}
+.btn-wa-w{background:white;color:var(--wa-dark);padding:15px 32px;border-radius:100px;font-weight:800;font-size:14px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;transition:transform 0.2s;}
+.btn-wa-w:hover{transform:scale(1.04);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:52px 40px 26px;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:44px;gap:28px;flex-wrap:wrap;}
+.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;margin-bottom:10px;}
+.flogo em{font-style:normal;color:var(--wa);}
+.ftagline{color:var(--muted);font-size:13px;max-width:220px;line-height:1.6;margin-bottom:16px;}
+.fwa{display:inline-flex;align-items:center;gap:7px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);color:var(--wa);padding:9px 18px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;}
+.fcol h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.fcol ul{list-style:none;}
+.fcol ul li{margin-bottom:9px;}
+.fcol ul li a{color:var(--muted);text-decoration:none;font-size:13px;transition:color 0.2s;}
+.fcol ul li a:hover{color:var(--white);}
+.footer-bot{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--border);flex-wrap:wrap;gap:14px;}
+.fcopy{font-size:12px;color:var(--muted);}
+.fpays{display:flex;gap:7px;}
+.fpay{background:var(--gray2);padding:5px 12px;border-radius:7px;font-size:11px;font-weight:700;color:var(--muted);}
+
+/* MODALS */
+.overlay{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;display:none;}
+.overlay.open{display:flex;}
+.mbox{background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:26px;padding:36px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;}
+.mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;}
+.mtitle{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}
+.mclose{background:var(--gray2);border:none;color:white;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mclose:hover{background:var(--red);}
+.finput{width:100%;background:var(--gray2);border:1px solid var(--border);border-radius:12px;padding:12px 15px;color:white;font-family:'DM Sans',sans-serif;font-size:14px;transition:border-color 0.2s;-webkit-appearance:none;}
+.finput:focus{outline:none;border-color:rgba(37,211,102,0.4);}
+.finput::placeholder{color:var(--muted);}
+.flabel{font-size:13px;font-weight:600;display:block;margin-bottom:6px;color:rgba(255,255,255,0.8);}
+.fgroup{margin-bottom:14px;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.btn-green{width:100%;padding:15px;background:var(--wa);color:white;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background 0.2s;margin-bottom:10px;}
+.btn-green:hover{background:var(--wa-dark);}
+.btn-cancel{width:100%;padding:13px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;}
+
+/* ORDER MODAL */
+.mprod{display:flex;align-items:center;gap:14px;background:var(--gray2);border-radius:14px;padding:14px;margin-bottom:20px;}
+.mprod-emoji{font-size:40px;}
+.mprod-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:3px;}
+.mprod-price{color:var(--wa);font-weight:800;font-size:17px;}
+.qty-row{display:flex;align-items:center;gap:12px;}
+.qbtn{width:34px;height:34px;background:var(--gray3);border:none;color:white;border-radius:50%;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;}
+.qbtn:hover{background:var(--wa);}
+.qnum{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;min-width:22px;text-align:center;}
+.mtotal{display:flex;justify-content:space-between;align-items:center;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.15);border-radius:12px;padding:13px 16px;margin:18px 0;}
+.mtotal-lbl{font-size:14px;font-weight:600;}
+.mtotal-val{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;color:var(--wa);}
+.mnote{font-size:12px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5;}
+
+/* ADMIN LIST */
+.admin-item{display:flex;align-items:center;gap:12px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:13px 15px;margin-bottom:9px;}
+.admin-item-info{flex:1;min-width:0;}
+.admin-item-name{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.admin-item-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+.admin-btns{display:flex;gap:7px;flex-shrink:0;}
+.btn-edit{background:var(--wa);border:none;color:white;padding:7px 13px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;}
+.btn-del{background:var(--red);border:none;color:white;padding:7px 11px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;}
+.admin-footer{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
+.btn-add{flex:1;padding:13px;background:var(--wa);color:white;border:none;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.btn-reset{padding:13px 16px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;}
+
+/* TOAST */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--wa);color:white;padding:12px 24px;border-radius:100px;font-weight:600;font-size:14px;z-index:9999;transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;box-shadow:0 8px 24px rgba(37,211,102,0.4);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:14px 20px;}.nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:100px 20px 60px;}.hero-right{order:-1;}
+  .stack{width:280px;height:300px;}.scard:nth-child(1){width:200px;left:20px;}.scard:nth-child(2){width:220px;left:25px;top:60px;}.scard:nth-child(3){width:240px;left:20px;top:130px;}
+  .steps{grid-template-columns:1fr 1fr;}.step-arr{display:none;}
+  .products{padding:60px 20px;}.grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .banner{margin:0 20px 60px;padding:32px 24px;flex-direction:column;}.banner-r{font-size:60px;}
+  .benefits{padding:0 20px 60px;grid-template-columns:repeat(2,1fr);}
+  .reviews-s{padding:0 20px 60px;}.reviews{grid-template-columns:1fr;}
+  .wa-cta{margin:0 20px 60px;padding:32px 24px;flex-direction:column;}
+  .how{padding:60px 20px;}
+  footer{padding:40px 20px 20px;}.footer-top{flex-direction:column;}
+  .wa-float{bottom:18px;right:18px;}
+  .fab{right:14px;}.fab-config{top:76px;}.fab-admin{top:128px;}
+}
+@media(max-width:480px){.hero h1{font-size:36px;}.grid{grid-template-columns:1fr;}.btn-ped{padding:9px 13px;font-size:11px;}}
+</style>
+</head>
+<body>
+
+<!-- FLOAT BUTTONS -->
+<button class="fab fab-config" onclick="openConfig()" title="Configurar">⚙️</button>
+<button class="fab fab-admin" onclick="openAdmin()" title="Productos">📦</button>
+<a class="wa-float" href="#" onclick="openWAGeneral(event)">💬</a>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">CEL<em>UX</em></div>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#como">¿Cómo comprar?</a></li>
+    <li><a href="#reviews">Reseñas</a></li>
+  </ul>
+  <a class="nav-wa" href="#" onclick="openWAGeneral(event)">💬 WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="hero-badge">🔥 #1 en ventas — Perú 2026</div>
+    <h1>Accesorios<br><span class="outline">premium</span><br>para tu cel</h1>
+    <p class="hero-desc">Cargadores, fundas y audífonos top. Envío a todo Perú en 24–72h. <strong>Pagas cuando recibes.</strong></p>
+    <div class="trust-row">
+      <div class="trust-pill">🚚 Envío 24–72h</div>
+      <div class="trust-pill">💳 Pago contra entrega</div>
+      <div class="trust-pill">🛡️ Garantía 30 días</div>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn-wa" href="#" onclick="openWAGeneral(event)">💬 Pedir por WhatsApp</a>
+      <a class="btn-ghost" href="#productos">Ver productos</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stack">
+      <div class="scard" style="background:linear-gradient(135deg,#111,#1a1a2e)">
+        <div class="scard-emoji">🎧</div><div class="scard-name">Audífonos TWS Pro</div>
+        <div class="scard-price">S/. 89.90</div><div class="scard-old">S/. 149.90</div>
+      </div>
+      <div class="scard" style="background:linear-gradient(135deg,#111,#1a0a0a)">
+        <div class="scard-emoji">⚡</div><div class="scard-name">Cargador Turbo 65W</div>
+        <div class="scard-price">S/. 49.90</div><div class="scard-old">S/. 89.90</div>
+      </div>
+      <div class="scard" style="background:linear-gradient(135deg,#131313,#0d1f0d)">
+        <div class="scard-hot">🔥 MÁS VENDIDO</div>
+        <div class="scard-emoji">📱</div><div class="scard-name">Funda MagSafe Premium</div>
+        <div class="scard-price">S/. 34.90</div><div class="scard-old">S/. 59.90</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mqwrap"><div class="mqinner" id="mq"></div></div>
+
+<!-- CÓMO COMPRAR -->
+<section class="how" id="como">
+  <div class="slabel">Proceso de compra</div>
+  <div class="stitle">¿Cómo pedir<br>por WhatsApp?</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-icon">👆</div><div class="step-t">Elige tu producto</div><div class="step-d">Navega el catálogo y toca "Pedir" en el producto que quieras.</div><div class="step-arr">→</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-icon">💬</div><div class="step-t">Completa tu pedido</div><div class="step-d">Ingresa tu nombre, distrito y cantidad. Te abrimos WhatsApp con todo listo.</div><div class="step-arr">→</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-icon">✅</div><div class="step-t">Confirmamos envío</div><div class="step-d">Confirmamos tu pedido y lo procesamos en Dropi. Te mandamos el tracking.</div><div class="step-arr">→</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-icon">🚪</div><div class="step-t">Recibe y paga</div><div class="step-d">El delivery llega a tu puerta. Pagas en efectivo al recibir. ¡Así de simple!</div></div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="products" id="productos">
+  <div class="sec-header">
+    <div><div class="slabel">Catálogo</div><div class="stitle">Nuestros productos</div></div>
+    <div class="ftabs">
+      <button class="ftab active" onclick="filterP('all',this)">Todos</button>
+      <button class="ftab" onclick="filterP('cargadores',this)">⚡ Cargadores</button>
+      <button class="ftab" onclick="filterP('fundas',this)">📱 Fundas</button>
+      <button class="ftab" onclick="filterP('audio',this)">🎧 Audio</button>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- BANNER -->
+<div class="banner">
+  <div class="banner-c">
+    <div class="banner-tag">Oferta del mes</div>
+    <div class="banner-t">Combo Gamer<br>por solo S/. 129</div>
+    <div class="banner-d">Audífonos TWS + Cargador Turbo + Cable 3en1.<br>Ahorra S/. 80 comprando el combo.</div>
+    <a class="btn-wa" href="#" onclick="openWACombo(event)" style="width:fit-content;">💬 Quiero el combo</a>
+  </div>
+  <div class="banner-r">🎮</div>
+</div>
+
+<!-- BENEFICIOS -->
+<section class="benefits">
+  <div class="ben"><div class="ben-i">🚚</div><div class="ben-t">Envío express</div><div class="ben-d">24–72h a Lima y provincias con seguimiento por WhatsApp.</div></div>
+  <div class="ben"><div class="ben-i">💵</div><div class="ben-t">Pago contra entrega</div><div class="ben-d">Sin tarjeta, sin adelantos. Pagas cuando recibes tu pedido.</div></div>
+  <div class="ben"><div class="ben-i">🛡️</div><div class="ben-t">Garantía 30 días</div><div class="ben-d">Si no funciona te cambiamos el producto sin preguntas.</div></div>
+  <div class="ben"><div class="ben-i">⭐</div><div class="ben-t">+12,000 clientes</div><div class="ben-d">Más de 12 mil peruanos ya compraron con nosotros. 4.9★</div></div>
+</section>
+
+<!-- RESEÑAS -->
+<section class="reviews-s" id="reviews">
+  <div class="slabel">Testimonios reales</div>
+  <div class="stitle">Lo que dicen<br>nuestros clientes</div>
+  <div class="reviews" id="reviews-grid"></div>
+</section>
+
+<!-- WA CTA -->
+<div class="wa-cta">
+  <div>
+    <div class="wacta-tag">¿Tienes dudas?</div>
+    <div class="wacta-t">Estamos en WhatsApp<br>para ayudarte 🙌</div>
+    <div class="wacta-d">Respuesta inmediata. Te asesoramos para elegir el accesorio perfecto.</div>
+  </div>
+  <a class="btn-wa-w" href="#" onclick="openWAGeneral(event)">💬 Escribir ahora</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="flogo">CEL<em>UX</em></div>
+      <div class="ftagline">Accesorios premium para celular. Envíos a todo Perú con pago contra entrega.</div>
+      <a class="fwa" href="#" onclick="openWAGeneral(event)" id="footerWA">💬 +51 900 000 000</a>
+    </div>
+    <div class="fcol"><h4>Productos</h4><ul><li><a href="#">Cargadores rápidos</a></li><li><a href="#">Fundas & Cases</a></li><li><a href="#">Audífonos TWS</a></li><li><a href="#">Cables 3 en 1</a></li><li><a href="#">Baterías portátiles</a></li></ul></div>
+    <div class="fcol"><h4>Soporte</h4><ul><li><a href="#como">¿Cómo comprar?</a></li><li><a href="#">Rastrear pedido</a></li><li><a href="#">Garantía y cambios</a></li><li><a href="#">Preguntas frecuentes</a></li></ul></div>
+    <div class="fcol"><h4>Síguenos</h4><ul><li><a href="#">📸 Instagram</a></li><li><a href="#">🎵 TikTok</a></li><li><a href="#">📘 Facebook</a></li><li><a href="#">💬 WhatsApp</a></li></ul></div>
+  </div>
+  <div class="footer-bot">
+    <div class="fcopy">© 2026 CELUX Perú. Todos los derechos reservados.</div>
+    <div class="fpays"><div class="fpay">YAPE</div><div class="fpay">PLIN</div><div class="fpay">EFECTIVO</div><div class="fpay">COD</div></div>
+  </div>
+</footer>
+
+<!-- ═══════════════ MODAL PEDIDO ═══════════════ -->
+<div class="overlay" id="modalPedido">
+  <div class="mbox">
+    <div class="mhead"><div class="mtitle">Hacer pedido 🛒</div><button class="mclose" onclick="closeModal('modalPedido')">✕</button></div>
+    <div class="mprod"><div class="mprod-emoji" id="mEmoji"></div><div><div class="mprod-name" id="mNombre"></div><div class="mprod-price" id="mPrecio"></div></div></div>
+    <div class="fgroup"><label class="flabel">Tu nombre completo *</label><input class="finput" id="fNom" type="text" placeholder="Ej: María García López"></div>
+    <div class="fgroup">
+      <label class="flabel">Distrito / Ciudad *</label>
+      <select class="finput" id="fDist">
+        <option value="">Selecciona tu ubicación...</option>
+        <optgroup label="Lima Metropolitana">
+          <option>Miraflores</option><option>San Isidro</option><option>Surco</option><option>La Molina</option><option>San Borja</option><option>Barranco</option><option>Lince</option><option>Jesús María</option><option>Pueblo Libre</option><option>San Miguel</option><option>Magdalena</option><option>Chorrillos</option><option>Villa El Salvador</option><option>San Juan de Miraflores</option><option>Los Olivos</option><option>San Martín de Porres</option><option>Comas</option><option>Ate</option><option>Santa Anita</option><option>El Agustino</option><option>La Victoria</option><option>Cercado de Lima</option><option>Breña</option><option>Rimac</option><option>Callao</option>
+        </optgroup>
+        <optgroup label="Provincias">
+          <option>Arequipa</option><option>Trujillo</option><option>Chiclayo</option><option>Piura</option><option>Cusco</option><option>Iquitos</option><option>Huancayo</option><option>Tacna</option><option>Pucallpa</option><option>Otro (indicar en WhatsApp)</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="fgroup"><label class="flabel">Cantidad</label><div class="qty-row"><button class="qbtn" onclick="changeQty(-1)">−</button><span class="qnum" id="qNum">1</span><button class="qbtn" onclick="changeQty(1)">+</button></div></div>
+    <div class="mtotal"><div class="mtotal-lbl">Total a pagar:</div><div class="mtotal-val" id="mTotal">S/. 0</div></div>
+    <button class="btn-green" onclick="sendToWA()">💬 Confirmar pedido por WhatsApp</button>
+    <div class="mnote">Pagas contra entrega cuando recibes tu pedido. 🇵🇪</div>
+  </div>
+</div>
+
+<!-- ═══════════════ MODAL CONFIG ═══════════════ -->
+<div class="overlay" id="modalConfig">
+  <div class="mbox">
+    <div class="mhead"><div class="mtitle">⚙️ Configurar tienda</div><button class="mclose" onclick="closeModal('modalConfig')">✕</button></div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;">Tus datos se guardan en este navegador.</p>
+    <div class="fgroup"><label class="flabel">📱 Tu número de WhatsApp</label><input class="finput" id="cfgNum" type="tel" placeholder="Ej: 51987654321"><p style="font-size:11px;color:var(--muted);margin-top:5px;">Código de país + número sin el 0 inicial</p></div>
+    <div class="fgroup"><label class="flabel">🏪 Nombre de tu tienda</label><input class="finput" id="cfgNom" type="text" placeholder="Ej: CELUX Perú"></div>
+    <button class="btn-green" onclick="saveConfig()">✅ Guardar cambios</button>
+    <button class="btn-cancel" onclick="closeModal('modalConfig')">Cancelar</button>
+  </div>
+</div>
+
+<!-- ═══════════════ MODAL ADMIN ═══════════════ -->
+<div class="overlay" id="modalAdmin">
+  <div class="mbox" style="max-width:520px;">
+    <div class="mhead"><div class="mtitle">📦 Mis productos</div><button class="mclose" onclick="closeModal('modalAdmin')">✕</button></div>
+    <div id="adminList" style="max-height:50vh;overflow-y:auto;margin-bottom:14px;"></div>
+    <div class="admin-footer">
+      <button class="btn-add" onclick="openEdit(-1)">➕ Agregar producto</button>
+      <button class="btn-reset" onclick="resetProds()">♻️ Restaurar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MODAL EDITAR PRODUCTO ═══════════════ -->
+<div class="overlay" id="modalEdit">
+  <div class="mbox">
+    <div class="mhead"><div class="mtitle" id="editTitle">✏️ Editar producto</div><button class="mclose" onclick="closeModal('modalEdit')">✕</button></div>
+    <div class="fgroup"><label class="flabel">📝 Nombre del producto *</label><input class="finput" id="epNom" type="text" placeholder="Ej: Cargador Inalámbrico 15W"></div>
+    <div class="fgrid">
+      <div><label class="flabel">💰 Precio actual (S/.) *</label><input class="finput" id="epPrecio" type="number" step="0.10" min="1" placeholder="49.90"></div>
+      <div><label class="flabel">🏷️ Precio tachado (S/.) *</label><input class="finput" id="epOld" type="number" step="0.10" min="1" placeholder="89.90"></div>
+    </div>
+    <div class="fgrid">
+      <div><label class="flabel">📂 Categoría</label>
+        <select class="finput" id="epCat">
+          <option value="cargadores">⚡ Cargadores</option>
+          <option value="fundas">📱 Fundas</option>
+          <option value="audio">🎧 Audio</option>
+        </select>
+      </div>
+      <div><label class="flabel">🏅 Badge</label>
+        <select class="finput" id="epBadge">
+          <option value="hot">🔥 Hot</option>
+          <option value="new">✨ Nuevo</option>
+          <option value="top">🏆 Top</option>
+        </select>
+      </div>
+    </div>
+    <div class="fgroup"><label class="flabel">😀 Emoji del producto</label><input class="finput" id="epEmoji" type="text" placeholder="⚡" maxlength="4" style="font-size:24px;text-align:center;"><p style="font-size:11px;color:var(--muted);margin-top:5px;">Abre el teclado de emojis de tu celular 😊</p></div>
+    <button class="btn-green" onclick="saveProduct()">✅ Guardar producto</button>
+    <button class="btn-cancel" onclick="closeModal('modalEdit')">Cancelar</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════
+let WA_NUMBER = localStorage.getItem('celux_wa') || '51900000000';
+let STORE_NAME = localStorage.getItem('celux_nom') || 'CELUX Perú';
+
+// Mostrar config la primera vez
+if(!localStorage.getItem('celux_wa')) setTimeout(()=>openConfig(), 1200);
+
+function openConfig(){
+  document.getElementById('cfgNum').value = WA_NUMBER;
+  document.getElementById('cfgNom').value = STORE_NAME;
+  openModal('modalConfig');
+}
+function saveConfig(){
+  const num = document.getElementById('cfgNum').value.trim().replace(/\D/g,'');
+  const nom = document.getElementById('cfgNom').value.trim();
+  if(!num || num.length < 10){ toast('⚠️ Número inválido. Ej: 51987654321'); return; }
+  if(!nom){ toast('⚠️ Escribe el nombre de tu tienda'); return; }
+  WA_NUMBER = num; STORE_NAME = nom;
+  localStorage.setItem('celux_wa', num);
+  localStorage.setItem('celux_nom', nom);
+  document.getElementById('footerWA').textContent = '💬 +' + num;
+  closeModal('modalConfig');
+  toast('✅ ¡Configuración guardada!');
+}
+
+// ══════════════════════════════════════
+// PRODUCTOS
+// ══════════════════════════════════════
+const defaultProds = [
+  {id:1,name:'Cargador Turbo 65W USB-C',cat:'cargadores',price:49.90,old:89.90,emoji:'⚡',badge:'hot',rating:4.9,reviews:847},
+  {id:2,name:'Funda MagSafe iPhone 14/15',cat:'fundas',price:34.90,old:59.90,emoji:'📱',badge:'new',rating:4.8,reviews:523},
+  {id:3,name:'Audífonos TWS Pro ANC',cat:'audio',price:89.90,old:149.90,emoji:'🎧',badge:'hot',rating:4.9,reviews:1203},
+  {id:4,name:'Cable Trenzado 3 en 1',cat:'cargadores',price:24.90,old:39.90,emoji:'🔌',badge:'top',rating:4.7,reviews:2145},
+  {id:5,name:'Soporte Magnético para Auto',cat:'fundas',price:39.90,old:69.90,emoji:'🧲',badge:'hot',rating:4.8,reviews:934},
+  {id:6,name:'Batería Portátil 20000mAh',cat:'cargadores',price:79.90,old:129.90,emoji:'🔋',badge:'new',rating:4.9,reviews:678},
+  {id:7,name:'Vidrio Templado 9H Anti-spy',cat:'fundas',price:19.90,old:34.90,emoji:'🛡️',badge:'top',rating:4.6,reviews:3201},
+  {id:8,name:'Parlante Bluetooth IPX7',cat:'audio',price:99.90,old:179.90,emoji:'🔊',badge:'hot',rating:4.9,reviews:445},
+];
+
+const bgMap = {cargadores:'linear-gradient(135deg,#0a0a1a,#111827)',fundas:'linear-gradient(135deg,#0a0a0a,#1a1a1a)',audio:'linear-gradient(135deg,#1a0505,#0d0d0d)'};
+
+let products = JSON.parse(localStorage.getItem('celux_prods') || 'null') || defaultProds;
+function saveProds(){ localStorage.setItem('celux_prods', JSON.stringify(products)); }
+
+function renderGrid(list){
+  const g = document.getElementById('grid');
+  g.innerHTML = '';
+  list.forEach(p => {
+    const disc = Math.round((1 - p.price/p.old)*100);
+    const bLabel = {hot:'🔥 Hot',new:'✨ Nuevo',top:'🏆 Top'}[p.badge]||'🔥 Hot';
+    const bClass = p.badge||'hot';
+    const d = document.createElement('div');
+    d.className='pcard';
+    d.innerHTML=`
+      <div class="pimg" style="background:${bgMap[p.cat]||bgMap.cargadores}">
+        <span class="pbadge ${bClass}">${bLabel}</span>
+        <span class="pdisc">-${disc}%</span>
+        ${p.emoji}
+      </div>
+      <div class="pinfo">
+        <div class="pcat">${p.cat}</div>
+        <div class="pname">${p.name}</div>
+        <div class="prating"><span class="pstars">${'★'.repeat(Math.floor(p.rating||4.8))}</span><span class="prtxt">${p.rating||4.8} (${(p.reviews||0).toLocaleString()})</span></div>
+        <div class="pfoot">
+          <div><div class="pprice">S/. ${parseFloat(p.price).toFixed(2)}</div><div class="pold">S/. ${parseFloat(p.old).toFixed(2)}</div></div>
+          <button class="btn-ped" onclick="openOrder(${p.id})">💬 Pedir</button>
+        </div>
+      </div>`;
+    g.appendChild(d);
+  });
+}
+renderGrid(products);
+
+function filterP(cat, btn){
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(cat==='all' ? products : products.filter(p=>p.cat===cat));
+}
+
+// ══════════════════════════════════════
+// ADMIN
+// ══════════════════════════════════════
+function openAdmin(){
+  renderAdminList();
+  openModal('modalAdmin');
+}
+function renderAdminList(){
+  document.getElementById('adminList').innerHTML = products.length === 0
+    ? '<p style="color:var(--muted);text-align:center;padding:20px;">No hay productos. Agrega uno.</p>'
+    : products.map((p,i)=>`
+      <div class="admin-item">
+        <span style="font-size:24px;">${p.emoji}</span>
+        <div class="admin-item-info">
+          <div class="admin-item-name">${p.name}</div>
+          <div class="admin-item-sub">S/. ${parseFloat(p.price).toFixed(2)} · ${p.cat}</div>
+        </div>
+        <div class="admin-btns">
+          <button class="btn-edit" onclick="openEdit(${i})">✏️ Editar</button>
+          <button class="btn-del" onclick="deleteProd(${i})">🗑️</button>
+        </div>
+      </div>`).join('');
+}
+
+let editIdx = null;
+function openEdit(i){
+  editIdx = i;
+  const p = i === -1
+    ? {name:'',cat:'cargadores',price:'',old:'',emoji:'📦',badge:'hot'}
+    : products[i];
+  document.getElementById('editTitle').textContent = i === -1 ? '➕ Nuevo producto' : '✏️ Editar producto';
+  document.getElementById('epNom').value   = p.name;
+  document.getElementById('epCat').value   = p.cat;
+  document.getElementById('epPrecio').value= p.price;
+  document.getElementById('epOld').value   = p.old;
+  document.getElementById('epEmoji').value = p.emoji;
+  document.getElementById('epBadge').value = p.badge;
+  openModal('modalEdit');
+}
+function saveProduct(){
+  const name  = document.getElementById('epNom').value.trim();
+  const cat   = document.getElementById('epCat').value;
+  const price = parseFloat(document.getElementById('epPrecio').value);
+  const old   = parseFloat(document.getElementById('epOld').value);
+  const emoji = document.getElementById('epEmoji').value.trim() || '📦';
+  const badge = document.getElementById('epBadge').value;
+  if(!name)              { toast('⚠️ Escribe el nombre del producto'); return; }
+  if(isNaN(price)||price<=0){ toast('⚠️ Ingresa un precio válido'); return; }
+  if(isNaN(old)||old<=price){ toast('⚠️ El precio tachado debe ser mayor al precio actual'); return; }
+  const prod = {id: editIdx===-1 ? Date.now() : products[editIdx].id, name, cat, price, old, emoji, badge, rating:4.8, reviews:0};
+  if(editIdx === -1){ products.push(prod); }
+  else { products[editIdx] = prod; }
+  saveProds();
+  closeModal('modalEdit');
+  renderAdminList();
+  renderGrid(products);
+  toast('✅ Producto guardado');
+}
+function deleteProd(i){
+  if(!confirm('¿Eliminar "'+products[i].name+'"?')) return;
+  products.splice(i,1);
+  saveProds(); renderAdminList(); renderGrid(products);
+  toast('🗑️ Producto eliminado');
+}
+function resetProds(){
+  if(!confirm('¿Restaurar los 8 productos originales?')) return;
+  products = [...defaultProds];
+  saveProds(); renderAdminList(); renderGrid(products);
+  toast('♻️ Productos restaurados');
+}
+
+// ══════════════════════════════════════
+// PEDIDO
+// ══════════════════════════════════════
+let curProd = null, qty = 1;
+function openOrder(id){
+  curProd = products.find(p=>p.id===id);
+  if(!curProd) return;
+  qty = 1;
+  document.getElementById('mEmoji').textContent = curProd.emoji;
+  document.getElementById('mNombre').textContent = curProd.name;
+  document.getElementById('mPrecio').textContent = 'S/. ' + parseFloat(curProd.price).toFixed(2);
+  document.getElementById('qNum').textContent = 1;
+  document.getElementById('fNom').value = '';
+  document.getElementById('fDist').value = '';
+  updateTotal();
+  openModal('modalPedido');
+}
+function changeQty(d){ qty=Math.max(1,Math.min(10,qty+d)); document.getElementById('qNum').textContent=qty; updateTotal(); }
+function updateTotal(){ if(curProd) document.getElementById('mTotal').textContent='S/. '+(curProd.price*qty).toFixed(2); }
+function sendToWA(){
+  const nom  = document.getElementById('fNom').value.trim();
+  const dist = document.getElementById('fDist').value;
+  if(!nom)  { toast('⚠️ Ingresa tu nombre'); return; }
+  if(!dist) { toast('⚠️ Selecciona tu distrito'); return; }
+  const msg = `🛒 *NUEVO PEDIDO — ${STORE_NAME}*\n\n`+
+    `📦 *Producto:* ${curProd.emoji} ${curProd.name}\n`+
+    `🔢 *Cantidad:* ${qty}\n`+
+    `💰 *Total:* S/. ${(curProd.price*qty).toFixed(2)}\n`+
+    `📍 *Distrito:* ${dist}\n`+
+    `👤 *Cliente:* ${nom}\n\n`+
+    `💵 *Pago:* Contra entrega\n\n`+
+    `_Por favor confírmame el pedido y tiempo de entrega. ¡Gracias!_ 🙏`;
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeModal('modalPedido');
+  toast('💬 Abriendo WhatsApp...');
+}
+function openWAGeneral(e){ e.preventDefault(); window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola '+STORE_NAME+'! 👋 Vi su tienda y quisiera saber más sobre sus productos 😊')}`, '_blank'); }
+function openWACombo(e){ e.preventDefault(); window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola '+STORE_NAME+'! 🎮 Quiero el COMBO GAMER por S/. 129.\n- Audífonos TWS Pro\n- Cargador Turbo 65W\n- Cable 3 en 1\n\n¿Tienen disponible?')}`, '_blank'); }
+
+// ══════════════════════════════════════
+// MODAL HELPERS
+// ══════════════════════════════════════
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow='';
+}
+// Cerrar al click en overlay
+['modalPedido','modalConfig','modalAdmin','modalEdit'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',function(e){
+    if(e.target===this) closeModal(id);
+  });
+});
+
+// ══════════════════════════════════════
+// MARQUEE
+// ══════════════════════════════════════
+const mqItems=['ENVÍO A TODO PERÚ','PAGO CONTRA ENTREGA','GARANTÍA 30 DÍAS','ATENCIÓN POR WHATSAPP','ENTREGA 24–72H','PRODUCTOS VERIFICADOS','SIN ADELANTOS','CALIDAD PREMIUM'];
+const mq=document.getElementById('mq');
+[...mqItems,...mqItems,...mqItems].forEach(t=>{const el=document.createElement('div');el.className='mqitem';el.innerHTML=`<span class="dot"></span>${t}`;mq.appendChild(el);});
+
+// ══════════════════════════════════════
+// RESEÑAS
+// ══════════════════════════════════════
+[
+  {text:'Llegó al día siguiente a Miraflores. El cargador turbo es una bestia, carga mi Samsung S24 en 38 minutos. Pedí 2 más para regalar.',name:'María C.',city:'Miraflores, Lima',emoji:'👩',stars:5},
+  {text:'Los audífonos son increíbles para ese precio. La cancelación de ruido funciona perfecto en el trabajo. Atención por WhatsApp rapidísima.',name:'José R.',city:'Arequipa',emoji:'👨',stars:5},
+  {text:'El pago contra entrega me dio confianza. El soporte magnético se adhiere perfecto al tablero. 100% recomendado.',name:'Ana P.',city:'Trujillo',emoji:'👩‍💼',stars:5},
+].forEach(r=>{
+  const c=document.createElement('div');c.className='rcard';
+  c.innerHTML=`<div class="rstars">${'★'.repeat(r.stars)}</div><div class="rtext">"${r.text}"</div><div class="rauthor"><div class="ravatar">${r.emoji}</div><div><div class="rname">${r.name}</div><div class="rcity">${r.city}</div></div></div>`;
+  document.getElementById('reviews-grid').appendChild(c);
+});
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+function toast(msg){ const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800); }
+</script>
+</body>
+</html>
